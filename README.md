@@ -15,7 +15,7 @@ Provisioners are used to install and configure the machine image after booting. 
 ```
 git clone https://github.com/mehdijebali/Terraform-Packer.git
 ```
-2. Change the directory to**custom_ami_deployment** and create an SSH key and name it **levelup_key**
+2. Change the directory to **custom_ami_deployment** and create an SSH key and name it **levelup_key**
 ```
 cd custom_ami_deployment && ssh-keygen
 ``` 
@@ -33,7 +33,7 @@ packer validate install_custom_ami.json
 ```
 packer build install_custom_ami.json
 ```
-6. Initiate Terraform in order to install the declared provider in `provider.tf` file after the build completion
+6. Initiate Terraform in order to install the declared provider in `provider.tf` file after the Packer image build completion
 ```
 terraform init
 ```
@@ -64,7 +64,7 @@ After the provisionning is done, we can verify the implementation of EC2 instanc
 #### AMI Image
 ![](./Lab_Results/packer_image.png)
 #### Congiguration check 
-When performing step 10 and 11, we shoud similar results as the following
+When performing step 10 and 11, we should find similar results as the following
 1. Docker
 ![](./Lab_Results/docker_verification.png)
 2. Nginx
