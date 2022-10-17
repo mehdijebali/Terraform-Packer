@@ -1,16 +1,16 @@
 # Provision Custom Instance with Terraform & Packer
 In this demo, we will launch an EC2 Instance with Terraform from an AMI image (contains docker and nginx) created by Packer. We will use a VPC terraform module in order to setup a specific virtual network.
-# About Packer
+## About Packer
 Packer is as an open source tool for creating identical machine images for multiple platforms from a single source configuration. Which allows to launch completely provisioned and configured machines in seconds. 
 
 The machines image contains a preconfigured operating system and installed software which is used to quickly create new running machines. This will speed up the boot time of Machine.
 
 Packer builds an image by using a template file that contains two main blocks
-## Builders
+#### Builders
 Builders are responsible for creating machines and generating images from them for various platforms. There are separate builders for each Cloud Provider, each with its own configuration.
-## Provisioners
+#### Provisioners
 Provisioners are used to install and configure the machine image after booting. they prepare the system for use through for example installing the necessary packages.
-## Instructions
+#### Instructions
 1. Clone the project 
 ```
 git clone https://github.com/mehdijebali/Terraform-Packer.git
@@ -57,3 +57,15 @@ apt-get list --installed | grep nginx
 ```
 apt-get list --installed | grep docker
 ```
+## Expected Results
+After the provisionning is done, we can verify the implementation of EC2 instance, AMI image, and check the packer configuration.
+#### EC2 Instance
+![](./Lab_Results/instance.png)
+#### AMI Image
+![](./Lab_Results/packer_image.png)
+#### Congiguration check 
+When performing step 10 and 11, we shoud similar results as the following
+1. Docker
+![](./Lab_Results/docker_verification.png)
+2. Nginx
+![](./Lab_Results/nginx_verification.png)
