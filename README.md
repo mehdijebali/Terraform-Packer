@@ -1,5 +1,6 @@
 # Provision Custom Instance with Terraform & Packer
-In this demo, we will launch an EC2 Instance with Terraform from an AMI image (contains docker and nginx) created by Packer. We will use a VPC terraform module in order to setup a specific virtual network.
+In this demo, we will launch an EC2 Instance with Terraform from an AMI image (contains docker and nginx) created by Packer. We will use a VPC terraform module in order to setup a specific virtual network regarding the following diagram:
+![](./Lab_Results/Packer.png)
 ## About Packer
 Packer is as an open source tool for creating identical machine images for multiple platforms from a single source configuration. Which allows to launch completely provisioned and configured machines in seconds. 
 
