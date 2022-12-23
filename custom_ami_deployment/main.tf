@@ -23,6 +23,6 @@ module "instance" {
   INSTANCE_TYPE = var.INSTANCE_TYPE
   INSTANCE_NAME = "instance-${var.ENVIRONMENT}"
   AVAILABILITY_ZONE = "${var.AWS_REGION}a"
-  INSTANCE-SUBNET_ID = element(module.develop-vpc.public_subnets, 0)
+  INSTANCE_SUBNET_ID = element(module.develop-vpc.public_subnets, 0)
 }
 
