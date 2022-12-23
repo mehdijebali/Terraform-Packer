@@ -34,7 +34,7 @@ resource "aws_instance" "MyFirstInstnace" {
   instance_type = var.INSTANCE_TYPE
   availability_zone = var.AVAILABILITY_ZONE
   key_name      = aws_key_pair.levelup_key.key_name
-
+  subnet_id = var.INSTANCE-SUBNET_ID
   vpc_security_group_ids = [aws_security_group.allow-levelup-ssh.id]
   
   tags = {
