@@ -1,5 +1,5 @@
 # Variable for Create Instance Module
-variable "public_key_path" {
+variable "PATH_TO_PUBLIC_KEY" {
   description = "Public key path"
   default = "levelup_key.pub"
 }
