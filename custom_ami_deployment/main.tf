@@ -11,6 +11,15 @@ provider "aws" {
   region = var.AWS_REGION
 }
 
+data "aws_ami" "packer_ami" {
+  most_recent      = true
+  owners           = ["self"]
+
+  filter {
+    name   = "name"
+    values = ["custom-packer-*"]
+  }
+}
 module "instance" {
   source = "../modules/instance"
 
@@ -19,7 +28,7 @@ module "instance" {
   SG_VPC_ID = module.develop-vpc.my_vpc_id
   SG_NAME = var.SG_NAME
   SG_DESCRIPTION = var.SG_DESCRIPTION
-  AMI_ID = var.AMI_ID
+  AMI_ID = data.aws_ami.packer_ami.id
   INSTANCE_TYPE = var.INSTANCE_TYPE
   INSTANCE_NAME = "instance-${var.ENVIRONMENT}"
   AVAILABILITY_ZONE = "${var.AWS_REGION}a"

@@ -52,11 +52,11 @@ ssh ec2-user@<public_ip>
 ```
 10. Check nginx installation
 ```
-apt-get list --installed | grep nginx
+apt list --installed | grep nginx
 ```
 11. Check docker installation
 ```
-apt-get list --installed | grep docker
+apt list --installed | grep docker
 ```
 ## Expected Results
 After the provisionning is done, we can verify the implementation of EC2 instance, AMI image, and check the packer configuration.
