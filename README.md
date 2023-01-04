@@ -52,11 +52,11 @@ ssh ec2-user@<public_ip>
 ```
 10. Check nginx installation
 ```
-apt list --installed | grep nginx
+sudo systemctl status docker.service
 ```
 11. Check docker installation
 ```
-apt list --installed | grep docker
+sudo systemctl status nginx.service
 ```
 ## Expected Results
 After the provisionning is done, we can verify the implementation of EC2 instance, AMI image, and check the packer configuration.
