@@ -1,5 +1,6 @@
 #!/bin/bash
 
+# Update packages
 sudo yum update -y
 
 # Install nginx
@@ -13,5 +14,3 @@ sudo yum -y install docker
 #Start Nginx & docker 
 sudo systemctl enable docker.service
 sudo systemctl enable nginx
-sudo systemctl start docker.service
-sudo systemctl start nginx
