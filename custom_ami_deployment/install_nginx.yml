@@ -9,3 +9,7 @@
     loop:
       - nginx
       - docker.io
+  - name: Ensure Services is running
+    service:
+      name: '{{ item }}'
+      state: started
