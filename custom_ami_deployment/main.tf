@@ -20,6 +20,7 @@ data "aws_ami" "packer_ami" {
     values = ["custom-packer-*"]
   }
 }
+
 module "instance" {
   source = "../modules/instance"
 

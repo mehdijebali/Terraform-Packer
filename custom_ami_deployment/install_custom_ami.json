@@ -26,9 +26,13 @@
     "provisioners": [
         {
             "type": "shell",
-            "script": "./install_nginx.sh",
-            "execute_command": "{{ .Vars }} sudo -E sh '{{ .Path }}'",
-            "pause_before": "10s"
-        }
+            "inline": [
+                "sudo apt-get update -y"
+            ]
+        },
+        {
+            "type": "ansible",
+            "playbook_file": "./install_nginx.yml"
+            }
     ]
 }
