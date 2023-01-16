@@ -1,15 +1,25 @@
 ---
 - hosts: all
   become: true
+  
   tasks:
-  - name: Install Dependencies
+  - name: Install nginx
     apt:
-      name: '{{ item }}'
+      name: nginx
       state: present
-    loop:
-      - nginx
-      - docker-ce
-  - name: Ensure Services is running
-    service:
-      name: '{{ item }}'
-      state: started
+  
+  - name: Add Docker GPG apt Key
+    apt_key:
+      url: https://download.docker.com/linux/ubuntu/gpg
+      state: present
+
+  - name: Add Docker Repository
+    apt_repository:
+      repo: 'deb https://download.docker.com/linux/ubuntu bionic stable'
+      state: present
+
+  - name: Install docker-ce
+    apt:
+      name: docker-ce
+      update_cache: true
+
