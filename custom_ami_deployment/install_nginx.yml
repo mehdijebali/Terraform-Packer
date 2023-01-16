@@ -1,5 +1,5 @@
 ---
-- hosts: default
+- hosts: all
   become: true
   tasks:
   - name: Install Dependencies
@@ -8,7 +8,7 @@
       state: present
     loop:
       - nginx
-      - docker.io
+      - docker-ce
   - name: Ensure Services is running
     service:
       name: '{{ item }}'
