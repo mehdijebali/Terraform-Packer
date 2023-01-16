@@ -1,0 +1,11 @@
+---
+- hosts: default
+  become: true
+  tasks:
+  - name: Install Dependencies
+    apt:
+      name: '{{ item }}'
+      state: present
+    loop:
+      - nginx
+      - docker.io
