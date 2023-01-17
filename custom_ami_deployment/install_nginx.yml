@@ -1,0 +1,41 @@
+---
+- hosts: all
+  become: true
+  
+  tasks:
+  - name: Update all packages
+    yum:
+      name: '*'
+      state: latest
+      update_only: yes
+  
+  - name: Ensure a list of yum packages are installed
+    yum:
+      name: "{{ packages }}"
+      state: latest
+      update_cache: yes
+    vars:
+      packages:
+      - yum-utils
+      - amazon-linux-extras
+  
+  - name: Add extras repository
+    shell: yum-config-manager --enable extras
+
+  - name: Install nginx
+    shell: amazon-linux-extras install nginx1.12=latest -y
+  
+  - name: Install docker-ce (centos) via amazon-linux-extras packages
+    shell: amazon-linux-extras install docker=latest -y
+
+  - name: Enable Docker CE service at startup
+    service:
+      name: docker
+      state: started
+      enabled: yes
+
+  - name: Enable Nginx service at startup
+    service:
+      name: nginx
+      state: started
+      enabled: yes
