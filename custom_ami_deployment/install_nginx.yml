@@ -25,6 +25,12 @@
   - name: Install nginx
     shell: amazon-linux-extras install nginx1.12=latest -y
   
+  - name: Check nginx version 
+    command: sudo nginx -v
+    register: nginx_version
+  - debug:
+      var: nginx_version
+  
   - name: Install docker-ce (centos) via amazon-linux-extras packages
     shell: amazon-linux-extras install docker=latest -y
 
