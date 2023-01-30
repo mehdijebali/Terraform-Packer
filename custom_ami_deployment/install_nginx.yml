@@ -57,5 +57,11 @@
       name: nginx
       state: started
       enabled: yes
+
+  - name: Check nginx service status
+    service_facts:
+    register: services_state
+  - debug:
+      var: services_state.ansible_facts.services['nginx.service']
   
   
