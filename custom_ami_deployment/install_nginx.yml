@@ -29,7 +29,7 @@
     command: sudo nginx -v
     register: nginx_version
   - debug:
-      var: nginx_version
+      var: nginx_version.stdout
   
   - name: Install docker-ce (centos) via amazon-linux-extras packages
     shell: amazon-linux-extras install docker=latest -y
@@ -38,7 +38,7 @@
     command: sudo docker --version
     register: docker_version
   - debug:
-      var: docker_version
+      var: docker_version.stdout
 
   - name: Enable Docker CE service at startup
     service:
