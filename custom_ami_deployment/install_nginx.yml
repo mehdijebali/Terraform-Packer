@@ -29,7 +29,7 @@
     command: sudo nginx -v
     register: nginx_version
   - debug:
-      var: nginx_version.stdout
+      var: nginx_version.stderr
   
   - name: Install docker-ce (centos) via amazon-linux-extras packages
     shell: amazon-linux-extras install docker=latest -y
@@ -47,10 +47,10 @@
       enabled: yes
   
   - name: Check docker service status
-    command: sudo systemctl status docker | grep active
-    register: docker_status
+    service_facts:
+    register: services_state
   - debug:
-      var: docker_status
+      var: services_state.ansible_facts.services['docker.service']
 
   - name: Enable Nginx service at startup
     service:
@@ -58,8 +58,4 @@
       state: started
       enabled: yes
   
-  - name: Check Nginx service status
-    command: sudo systemctl status nginx | grep active
-    register: nginx_status
-  - debug:
-      var: nginx_status
+  
