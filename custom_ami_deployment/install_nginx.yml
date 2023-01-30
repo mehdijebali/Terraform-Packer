@@ -46,10 +46,20 @@
       state: started
       enabled: yes
   
-  
+  - name: Check docker service status
+    command: sudo systemctl status docker | grep active
+    register: docker_status
+  - debug:
+      var: docker_status
 
   - name: Enable Nginx service at startup
     service:
       name: nginx
       state: started
       enabled: yes
+  
+  - name: Check Nginx service status
+    command: sudo systemctl status nginx | grep active
+    register: nginx_status
+  - debug:
+      var: nginx_status
