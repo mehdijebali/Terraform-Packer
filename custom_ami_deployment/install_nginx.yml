@@ -46,12 +46,6 @@
       state: started
       enabled: yes
   
-  - name: Check docker service status
-    service_facts:
-    register: services_state
-  - debug:
-      var: services_state.ansible_facts.services['docker.service']
-
   - name: Enable Nginx service at startup
     service:
       name: nginx
@@ -63,5 +57,7 @@
     register: services_state
   - debug:
       var: services_state.ansible_facts.services['nginx.service']
+  - debug:
+      var: services_state.ansible_facts.services['docker.service']
   
   
