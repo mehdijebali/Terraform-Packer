@@ -43,7 +43,7 @@
     register: docker_version
   - debug:
       var: docker_version.stdout
-
+  
   - name: Check installed service status
     service_facts:
     register: services_state
@@ -64,5 +64,3 @@
       name: nginx
       state: started
       enabled: yes
-  
-  
