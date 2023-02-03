@@ -65,4 +65,4 @@
       name: nginx
       state: started
       enabled: yes
-    when: nginx_version.changed == false
+    when: nginx_version.changed == true
