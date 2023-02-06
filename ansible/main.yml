@@ -1,15 +1,19 @@
 ---
 - hosts: all
   become: true
+
+  vars:
+    linux_distribution: ubuntu
   
   tasks:
-  - name: Update all packages
+  - name: Update all packages (centos)
     yum:
       name: '*'
       state: latest
       update_only: yes
+    when: linux_distribution == "centos"
   
-  - name: Ensure a list of yum packages are installed
+  - name: Ensure a list of yum packages are installed (centos)
     yum:
       name: "{{ packages }}"
       state: latest
@@ -18,14 +22,23 @@
       packages:
       - yum-utils
       - amazon-linux-extras
+    when: linux_distribution == "centos"
   
-  - name: Add extras repository
+  - name: Add extras repository (centos)
     shell: yum-config-manager --enable extras
+    when: linux_distribution == "centos"
 
-  - name: Install nginx
+  - name: Install nginx (centos)
     shell: amazon-linux-extras install nginx1.12=latest -y
+    when: linux_distribution == "centos"
     notify:
       - Enable Nginx service at startup
+  
+  - name: Install nginx (ubuntu)
+    apt:
+      name: nginx
+      state: present
+    when: linux_distribution == "ubuntu"
   
   - name: Check nginx version 
     command: sudo nginx -v
@@ -33,10 +46,29 @@
   - debug:
       var: nginx_version.stderr
   
-  - name: Install docker-ce (centos) via amazon-linux-extras packages
+  - name: Install docker-ce (centos)
     shell: amazon-linux-extras install docker=latest -y
+    when: linux_distribution == "centos"
     notify:
       - Enable Docker CE service at startup
+  
+  - name: Add Docker GPG apt Key (ubuntu)
+    apt_key:
+      url: https://download.docker.com/linux/ubuntu/gpg
+      state: present
+    when: linux_distribution == "ubuntu"
+  
+  - name: Add Docker Repository (ubuntu)
+    apt_repository:
+      repo: 'deb https://download.docker.com/linux/ubuntu bionic stable'
+      state: present
+    when: linux_distribution == "ubuntu"
+  
+  - name: Install docker-ce (ubuntu)
+    apt:
+      name: docker-ce
+      update_cache: true
+    when: linux_distribution == "ubuntu"
   
   - name: Check docker version 
     command: sudo docker --version
