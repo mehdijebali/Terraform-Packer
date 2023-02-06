@@ -22,12 +22,15 @@
       packages:
       - yum-utils
       - amazon-linux-extras
+    when: linux_distribution == "centos"
   
   - name: Add extras repository (centos)
     shell: yum-config-manager --enable extras
+    when: linux_distribution == "centos"
 
   - name: Install nginx (centos)
     shell: amazon-linux-extras install nginx1.12=latest -y
+    when: linux_distribution == "centos"
     notify:
       - Enable Nginx service at startup
   
@@ -39,6 +42,7 @@
   
   - name: Install docker-ce (centos)
     shell: amazon-linux-extras install docker=latest -y
+    when: linux_distribution == "centos"
     notify:
       - Enable Docker CE service at startup
   
