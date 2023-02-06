@@ -34,6 +34,12 @@
     notify:
       - Enable Nginx service at startup
   
+  - name: Install nginx (ubuntu)
+    apt:
+      name: nginx
+      state: present
+    when: linux_distribution == "ubuntu"
+  
   - name: Check nginx version 
     command: sudo nginx -v
     register: nginx_version
@@ -45,6 +51,24 @@
     when: linux_distribution == "centos"
     notify:
       - Enable Docker CE service at startup
+  
+  - name: Add Docker GPG apt Key (ubuntu)
+    apt_key:
+      url: https://download.docker.com/linux/ubuntu/gpg
+      state: present
+    when: linux_distribution == "ubuntu"
+  
+  - name: Add Docker Repository (ubuntu)
+    apt_repository:
+      repo: 'deb https://download.docker.com/linux/ubuntu bionic stable'
+      state: present
+    when: linux_distribution == "ubuntu"
+  
+  - name: Install docker-ce (ubuntu)
+    apt:
+      name: docker-ce
+      update_cache: true
+    when: linux_distribution == "ubuntu"
   
   - name: Check docker version 
     command: sudo docker --version
