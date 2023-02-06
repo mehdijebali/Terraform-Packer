@@ -11,6 +11,7 @@
       name: '*'
       state: latest
       update_only: yes
+    when: linux_distribution == "centos"
   
   - name: Ensure a list of yum packages are installed (centos)
     yum:
