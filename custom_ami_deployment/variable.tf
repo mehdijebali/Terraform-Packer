@@ -33,3 +33,7 @@ variable "SG_NAME" {
 variable "SG_DESCRIPTION" {
   default = "security group that allows ssh connection"
 }
+
+variable "LD_NAME" {
+  default = "centos"
+}
