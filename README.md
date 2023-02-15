@@ -12,6 +12,8 @@ Builders are responsible for creating machines and generating images from them f
 #### Provisioners
 Provisioners are used to install and configure the machine image after booting. they prepare the system for use through for example installing the necessary packages.
 #### Instructions
+<details>
+  <summary>Centos</summary>
 1. Clone the project 
 ```
 git clone https://github.com/mehdijebali/Terraform-Packer.git
@@ -26,7 +28,7 @@ export AWS_ACCESS_KEY_ID=AKIAIOSFODNN7EXAMPLE
 export AWS_SECRET_ACCESS_KEY=wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY
 export AWS_DEFAULT_REGION=us-west-2
 ```
-4. Validate Packer configuration file syntax
+4. Go back to project root directory and validate Packer configuration file syntax
 ```
 packer validate install_custom_ami.json
 ```
@@ -58,6 +60,8 @@ sudo systemctl status docker.service
 ```
 sudo systemctl status nginx.service
 ```
+</details>
+
 ## Expected Results
 After the provisionning is done, we can verify the implementation of EC2 instance, AMI image, and check the packer configuration.
 #### EC2 Instance
