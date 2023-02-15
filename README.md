@@ -31,7 +31,7 @@ export AWS_DEFAULT_REGION=us-west-2
 ```
 4. Go back to project root directory and validate Packer configuration file syntax
 ```
-packer validate install_custom_ami.json
+packer validate ./packer/centos/install_custom_ami.json
 ```
 5. Once the validation is succeeded, you can build the custom image
 ```
