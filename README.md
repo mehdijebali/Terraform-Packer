@@ -63,6 +63,57 @@ sudo systemctl status nginx.service
 ```
 </details>
 
+<details>
+  <summary>Ubuntu</summary>
+
+1. Clone the project 
+```
+git clone https://github.com/mehdijebali/Terraform-Packer.git
+```
+2. Change the directory to **custom_ami_deployment** and create an SSH key and name it **levelup_key**
+```
+cd custom_ami_deployment && ssh-keygen
+``` 
+3. Export your AWS Credentials
+```
+export AWS_ACCESS_KEY_ID=AKIAIOSFODNN7EXAMPLE
+export AWS_SECRET_ACCESS_KEY=wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY
+export AWS_DEFAULT_REGION=us-west-2
+```
+4. Go back to project root directory and validate Packer configuration file syntax
+```
+packer validate ./packer/ubuntu/install_custom_ami.json
+```
+5. Once the validation is succeeded, you can build the custom image
+```
+packer build install_custom_ami.json
+```
+6. Initiate Terraform in order to install the declared provider in `provider.tf` file after the Packer image build completion
+```
+terraform init
+```
+7. If you want to see your provisionning details, run the following command
+```
+terraform plan
+```
+8. Apply modifications
+```
+terraform apply
+```
+9. After the creation is completed, SSH to the EC2 instance
+```
+ssh ec2-user@<public_ip>
+```
+10. Check nginx installation
+```
+sudo systemctl status docker.service
+```
+11. Check docker installation
+```
+sudo systemctl status nginx.service
+```
+</details>
+
 ## Expected Results
 After the provisionning is done, we can verify the implementation of EC2 instance, AMI image, and check the packer configuration.
 #### EC2 Instance
