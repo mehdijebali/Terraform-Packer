@@ -14,6 +14,7 @@ Provisioners are used to install and configure the machine image after booting. 
 #### Instructions
 <details>
   <summary>Centos</summary>
+
 1. Clone the project 
 ```
 git clone https://github.com/mehdijebali/Terraform-Packer.git
