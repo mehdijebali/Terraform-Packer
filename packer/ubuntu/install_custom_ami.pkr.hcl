@@ -10,7 +10,7 @@ data "amazon-ami" "ubuntu" {
   region      = "us-east-1"
 }
 
-source "amazon-ebs" "ui" {
+source "amazon-ebs" "ubuntu" {
   ami_name      = "ubuntu-pkr-${formatdate("YYYY-MM-DD-hhmmss", timestamp())}"
   instance_type = "t2.micro"
   region        = "us-east-1"
@@ -19,7 +19,7 @@ source "amazon-ebs" "ui" {
 }
 
 build {
-  sources = ["source.amazon-ebs.ui"]
+  sources = ["source.amazon-ebs.ubuntu"]
 
   provisioner "shell" {
     inline = ["sudo apt-get update -y"]
