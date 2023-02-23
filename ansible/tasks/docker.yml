@@ -1,0 +1,25 @@
+---
+# Deploy docker
+- name: Install docker-ce (centos)
+  shell: amazon-linux-extras install docker={{docker_version}} -y
+  when: linux_distribution == "centos"
+  notify:
+    - Enable Docker CE service at startup
+
+- name: Add Docker GPG apt Key (ubuntu)
+  apt_key:
+    url: "{{docker_GPG_key}}"
+    state: present
+  when: linux_distribution == "ubuntu"
+
+- name: Add Docker Repository (ubuntu)
+  apt_repository:
+    repo: 'deb {{docker_repository}} bionic stable'
+    state: present
+  when: linux_distribution == "ubuntu"
+
+- name: Install docker-ce (ubuntu)
+  apt:
+    name: docker-ce
+    update_cache: true
+  when: linux_distribution == "ubuntu"
