@@ -1,6 +1,6 @@
 ---
 # vars file 
-linux_distribution: ubuntu
+linux_distribution: centos
 nginx_version: latest
 docker_version: latest
 docker_GPG_key: https://download.docker.com/linux/ubuntu/gpg
