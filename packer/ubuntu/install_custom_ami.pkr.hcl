@@ -11,7 +11,7 @@ data "amazon-ami" "ubuntu" {
 }
 
 source "amazon-ebs" "ubuntu" {
-  ami_name      = "ubuntu-pkr-${formatdate("YYYY-MM-DD-hhmmss", timestamp())}"
+  ami_name      = "ubuntu-pkr-${formatdate("YYYY-MM-DD-hh.mm.ss", timestamp())}"
   instance_type = "t2.micro"
   region        = "us-east-1"
   source_ami    = "${data.amazon-ami.ubuntu.id}"
