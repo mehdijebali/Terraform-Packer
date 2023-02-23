@@ -10,7 +10,7 @@ data "amazon-ami" "centos" {
 }
 
 source "amazon-ebs" "centos" {
-  ami_name      = "centos-pkr-${formatdate("YYYY-MM-DD-hhmmss", timestamp())}"
+  ami_name      = "centos-pkr-${formatdate("YYYY-MM-DD-hh.mm.ss", timestamp())}"
   instance_type = "t2.micro"
   region        = "us-east-1"
   source_ami    = "${data.amazon-ami.centos.id}"
