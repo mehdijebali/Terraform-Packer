@@ -1,2 +1,15 @@
 ---
-# handlers file for test
+# handlers file
+- name: Enable Docker CE service at startup
+  service:
+    name: docker
+    state: started
+    enabled: yes
+  when: docker_version.changed == true
+
+- name: Enable Nginx service at startup
+  service:
+    name: nginx
+    state: started
+    enabled: yes
+  when: nginx_version.changed == true
