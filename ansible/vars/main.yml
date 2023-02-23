@@ -1,2 +1,10 @@
 ---
-# vars file for test
+# vars file 
+linux_distribution: centos
+nginx_version: latest
+docker_version: latest
+docker_GPG_key: https://download.docker.com/linux/ubuntu/gpg
+docker_repository: https://download.docker.com/linux/ubuntu
+packages:
+  - yum-utils
+  - amazon-linux-extras
