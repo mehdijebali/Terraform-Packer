@@ -1,5 +1,5 @@
 ---
-- name: Deploy 
+- name: Deploy Packer Image 
   hosts: all
   become: true
 
@@ -7,29 +7,11 @@
   - include_vars: ./vars/main.yml
   - include_tasks: ./tasks/nginx.yml
   - include_tasks: ./tasks/docker.yml
-
-  - name: Check nginx version 
-    command: sudo nginx -v
-    register: nginx_version
-  - debug:
-      var: nginx_version.stderr
-
-  - name: Check docker version 
-    command: sudo docker --version
-    register: docker_version
-  - debug:
-      var: docker_version.stdout
-
+  
   - name: Flush handlers
     meta: flush_handlers
 
-  - name: Check installed service status
-    service_facts:
-    register: services_state
-  - debug:
-      var: services_state.ansible_facts.services['nginx.service']
-  - debug:
-      var: services_state.ansible_facts.services['docker.service']
+  - include_tasks: ./tests/debug.yml
   
   handlers:
   - name: Enable Docker CE service at startup
