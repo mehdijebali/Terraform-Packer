@@ -9,12 +9,12 @@
   command: sudo docker --version
   register: docker_version
 - debug:
-      var: docker_version.stdout
+    var: docker_version.stdout
 
 - name: Check installed service status
   service_facts:
   register: services_state
 - debug:
-  var: services_state.ansible_facts.services['nginx.service']
+    var: services_state.ansible_facts.services['nginx.service']
 - debug:
     var: services_state.ansible_facts.services['docker.service']
